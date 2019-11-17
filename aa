@@ -1,0 +1,61 @@
+#!/ara/adventum_ark/envs/py3/bin/python3.6
+
+"""
+#!/tmp/py3_ubuntu/bin/python3
+#!/ara/adventum_ark/envs/py3/bin/python3.6
+"""
+
+import click
+
+from conf.conf import *
+
+from installers.copy import Copy
+from installers.gog import Gog
+
+from runners.dosbox import DosBox
+from runners.scummvm import ScummVM
+from runners.wine import Wine
+
+
+@click.group()
+def cli():
+    pass
+
+
+@cli.command()
+@click.argument("title",
+                type=click.Choice(list(GAMES_CONF.keys()), case_sensitive=False),
+                autocompletion=list(GAMES_CONF.keys()),
+                required=True)
+def install(title):
+    engine = GAMES_CONF[title]["install"]["engine"]
+    if engine == "copy":
+        Copy(title).install()
+    elif engine == "gog":
+        Gog(title).install()
+    else:
+        raise Exception(f"unknown engine: {engine}")
+
+
+@cli.command()
+@click.argument("title",
+                type=click.Choice(list(GAMES_CONF.keys()), case_sensitive=False),
+                autocompletion=list(GAMES_CONF.keys()),
+                required=True)
+def run(title):
+    broken = GAMES_CONF[title].get("broken", None)
+    if broken:
+        raise Exception(broken)
+    engine = GAMES_CONF[title]["run"]["engine"]
+    if engine == "wine":
+        Wine(title).run()
+    elif engine == "dosbox":
+        DosBox(title).run()
+    elif engine == "scummvm":
+        ScummVM(title).run()
+    else:
+        raise Exception(f"unknown engine: {engine}")
+
+
+if __name__ == '__main__':
+    cli()

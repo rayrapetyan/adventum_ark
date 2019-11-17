@@ -1,0 +1,496 @@
+{
+  "3_skulls_of_the_toltecs": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_fenimore_fillmore_3_skulls_of_the_toltecs_1.6.0_(31278).exe",
+      "app_files": [
+        "RData.Audio",
+        "3 Skulls of the Toltecs.exe",
+        "RData.lzma",
+        "Galaxy.dll"
+      ],
+      "patches": {
+        "copy_file": {
+          "{WINE_ENV_PATH}/drive_c/users/{USER}/Application Data/CasualBrothers/3Skulls/default": [
+            "config.txt"
+          ]
+        }
+      },
+      "saves_path": "{WINE_ENV_PATH}/drive_c/users/{USER}/Application Data/CasualBrothers/3Skulls/default/Savegames"
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "3 Skulls of the Toltecs.exe"
+    }
+  },
+  "9_the_last_resort": {
+    "install": {
+      "engine": "copy",
+      "nine.iso": {
+        "{GAME_PATH}": [
+          "./*"
+        ]
+      }
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "nine_95.exe"
+    },
+    "broken": "requires 8bpp emulation"
+  },
+  "bad_mojo_redux": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}": [
+            "./*"
+          ]
+        }
+      },
+      "patches": {
+        "copy_file": {
+          "{GAME_PATH}": [
+            "BADMOJO.INI"
+          ]
+        },
+        "find_replace_text": {
+          "{GAME_PATH}/BADMOJO.INI": [
+            {
+              "eval": "WINE_GAMES_BASE_PATH"
+            }
+          ]
+        }
+      },
+      "saves_path": "{GAME_PATH}/SAVE"
+    },
+    "run": {
+      "engine": "wine",
+      "screen_resolution": "640x480",
+      "exec_file": "BADMOJO.EXE"
+    }
+  },
+  "black_mirror": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_the_black_mirror_2.0.0.2.exe",
+      "app_files": [
+        "app/*"
+      ]
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "BMirror.exe",
+      "post_cmd": "xrandr --output HDMI1 --brightness 1"
+    },
+    "copy_saves": "{GAME_PATH}/save.*"
+  },
+  "black_mirror_2": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_black_mirror_2_2.0.0.3.exe",
+      "app_files": [
+        "app/*"
+      ],
+      "saves_path": "{GAME_PATH}/Savegames"
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "BlackMirror2.exe"
+    }
+  },
+  "broken_sword_the_shadow_of_the_templars_dc": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_broken_sword_-_directors_cut_1.0.744_(22165).exe",
+      "app_files": [
+        "*"
+      ],
+      "saves_path": "/home/{USER}/Broken Sword - Director's Cut"
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "bs1dc"
+    }
+  },
+  "broken_sword_25_the_return_of_the_templars": {
+    "install": {
+      "engine": "gog",
+      "installer": "bs25-setup.exe",
+      "app_files": [
+        "app/*"
+      ],
+      "patches": {
+        "copy_file": {
+          "{GAME_PATH}": [
+            "lang_en.b25c",
+            "patch000.b25c"
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "scummvm",
+      "scummvm_gameid": "sword25"
+    }
+  },
+  "clandestiny": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}": [
+            "system/*",
+            "disk.1",
+            "groovie",
+            "media"
+          ]
+        },
+        "2.iso": {
+          "{GAME_PATH}": [
+            "disk.2",
+            "groovie",
+            "media"
+          ]
+        }
+      },
+      "patches": {
+        "copy_file": {
+          "{GAME_PATH}": [
+            "groovie2.ini"
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "wine",
+      "cdrom_folder": "{GAME_PATH}",
+      "screen_resolution": "640x480",
+      "exec_file": "v32win.exe"
+    },
+    "copy_saves": "{GAME_PATH}/sclan.*"
+  },
+  "curse_of_monkey_island": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_the_curse_of_monkey_islandtm_1.0l_(20628).exe",
+      "app_files": [
+        "COMI.*", "RESOURCE"
+      ]
+    },
+    "run": {
+      "engine": "scummvm",
+      "scummvm_gameid": "comi"
+    }
+  },
+  "day_of_the_tentacle": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_day_of_the_tentacle_remastered_1.3.11_(a)_(10017).exe",
+      "app_files": [
+        "app/*"
+      ]
+    },
+    "run": {
+      "engine": "wine",
+      "wine_env": "win7",
+      "exec_file": "Dott.exe"
+    },
+    "broken": "fails on fmod's System::init (troubles with OSS wine driver), works fine in linux"
+  },
+  "discworld_2_missing_presumed": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}/1": [
+            "./*"
+          ],
+          "{GAME_PATH}/2": [
+            "./*"
+          ]
+        }
+      },
+      "saves_path": "{GAME_PATH}/SAVE"
+    },
+    "run": {
+      "engine": "dosbox",
+      "images": ["1.iso", "2.iso"],
+      "exec_file": "DW2.BAT"
+    }
+  },
+  "fable": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}": [
+            "hero.dat", "hmidet.386", "hmidrv.386", "misc.dat", "part1.dat", "part2.dat", "part3.dat", "part4.dat",
+            "dos4gw.exe"
+          ],
+          "{GAME_PATH}/fable.exe": "fable.ex_"
+        }
+      },
+      "patches": {
+        "copy_file": {
+          "{GAME_PATH}": [
+            "fable.cfg"
+          ]
+        }
+      },
+      "saves_path": "{GAME_PATH}/SAVEGAME"
+    },
+    "run": {
+      "engine": "dosbox",
+      "images": ["1.iso"],
+      "exec_file": "FABLE.EXE"
+    }
+  },
+  "faust_the_seven_games_of_the_soul": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}/data": [
+            "DATA/eng/sy.at3",
+            "DATA/*"
+          ],
+          "{GAME_PATH}": [
+            "ames.ini",
+            "aobj.ini",
+            "arxrin3.fon",
+            "faust.exe",
+            "fl.ini",
+            "mmxImage.dll"
+          ]
+        },
+        "2.iso": {
+          "{GAME_PATH}": [
+            "./*"
+          ]
+        },
+        "3.iso": {
+          "{GAME_PATH}": [
+            "./*"
+          ]
+        },
+        "4.iso": {
+          "{GAME_PATH}": [
+            "./*"
+          ]
+        }
+      },
+      "patches": {
+        "copy_file": {
+          "{GAME_PATH}/data": [
+            "cd.ini"
+          ]
+        },
+        "find_replace_text": {
+          "{GAME_PATH}/fl.ini": [
+            {
+              "find": "CDROM",
+              "replace": ".\\"
+            },
+            {
+              "find": "CHECKCD:[[:space:]]*1",
+              "replace": "CHECKCD: 0"
+            },
+            {
+              "find": "CHECKLOADSAVE:[[:space:]]*1",
+              "replace": "CHECKLOADSAVE: 0"
+            }
+          ]
+        }
+      },
+      "saves_path": "{GAME_PATH}/data/save"
+    },
+    "run": {
+      "engine": "wine",
+      "screen_resolution": "640x480",
+      "exec_file": "faust.exe"
+    }
+  },
+  "golden_gate": {
+    "install": {
+      "engine": "copy",
+      "images": {},
+      "patches": {
+        "copy_file": {
+          "{GAME_PATH}": [
+            "GOLDENGA.EXE"
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "wine",
+      "wine_env": "win95_qt2",
+      "images": ["1.iso"],
+      "cdrom_first_letter": "e",
+      "exec_file": "GOLDENGA.EXE",
+      "screen_resolution": "640x480"
+    },
+    "copy_saves": "{GAME_PATH}/*.ggx"
+  },
+  "jack_orlando": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_jack_orlando_dc_1.0_(15829).exe",
+      "app_files": [
+        "app/*"
+      ],
+      "saves_path": "{GAME_PATH}/Savegame"
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "JackOrlando.exe"
+    }
+  },
+  "last_express": {
+    "run": {
+      "engine": "dosbox",
+      "exec_file": "EXPRESS.EXE",
+      "cdrom_folder": "{GAME_PATH}/data"
+    },
+    "install": {
+      "engine": "gog",
+      "installer": "setup_the_last_express_1.0_(28045).exe",
+      "app_files": [
+        "data", "EXPRESS.EXE", "HD.HPF"
+      ]
+    },
+    "copy_saves": "{GAME_PATH}/*.EGG"
+  },
+  "leisure_suit_larry_7_love_for_sail": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_larry7_2.0.0.11.exe",
+      "app_files": [
+        "app/*"
+      ]
+    },
+    "run": {
+      "engine": "scummvm",
+      "scummvm_gameid": "lsl7"
+    }
+  },
+  "neverhood": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}": [
+            "DATA", "DATA/HD.BLB"
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "scummvm",
+      "scummvm_gameid": "neverhood"
+    }
+  },
+  "pink_panther_passport_to_peril": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}": [
+            "./*"
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "pptp.exe",
+      "screen_resolution": "640x480"
+    },
+    "broken": "hangs after few seconds of a gameplay"
+  },
+  "safecracker": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "safecracker.iso": {
+          "{GAME_PATH}": [
+            "./*"
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "sc_eng.exe",
+      "screen_resolution": "640x480"
+    },
+    "broken": "watch https://bugs.winehq.org/show_bug.cgi?id=44931"
+  },
+  "sanitarium": {
+    "install": {
+      "engine": "gog",
+      "saves_path": "{GAME_PATH}/SAVES",
+      "installer": "Setup\\ Sanitarium.exe",
+      "app_files": [
+        "app/*"
+      ]
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "sntrm.exe"
+    }
+  },
+  "shivers_2_harvest_of_souls": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}": [
+            "./*"
+          ]
+        },
+        "2.iso": {
+          "{GAME_PATH}": [
+            "./*"
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "RSHIVERS.EXE",
+      "cdrom_folder": "{GAME_PATH}"
+    },
+    "broken": "totally"
+  },
+  "toonstruck": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_toonstruck_1.0_(20270).exe",
+      "app_files": [
+        "Toonstruck/*"
+      ]
+    },
+    "run": {
+      "engine": "scummvm",
+      "scummvm_gameid": "toon"
+    }
+  },
+  "woodruff": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}": [
+            "woodruff.itk", "intro.stk"
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "scummvm",
+      "scummvm_gameid": "gob"
+    }
+  }
+}

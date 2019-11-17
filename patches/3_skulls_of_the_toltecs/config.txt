@@ -1,0 +1,17 @@
+Language { English }
+Voices { English }
+Volume { 0.800000 }
+Enhanced { true }
+Subtitles { true }
+VideoSettings
+{
+	Device { "Intel(R) HD Graphics 4000" }
+	Display { \\.\DISPLAY1 }
+	Resolution { 1920 1080 }
+	AspectGame { 1 }
+	AspectScreen { 16 10 }
+	Fullscreen { true }
+	VSync { false }
+	AllModes { true }
+	MotionBlur { false }
+}
