@@ -5,6 +5,7 @@ from conf.conf import *
 from _utils.md import MemDisk
 from _utils.misc import (
     cmd_exec,
+    eval_path,
     restore_screen_resolution,
     set_screen_resolution,
 )
@@ -104,7 +105,11 @@ class Wine(BaseRunner):
             if stderr:
                 print(f"pre_cmd errors: {stderr}")
 
+        cwd = self.conf.get("cwd", Path(WINE_ENVS_BASE_PATH) / self.env_path / "drive_c" / "games" / self.title)
+
+        cwd = eval_path(Path(cwd), self.env)
+
         self.run_wine_cmd(
             cmd=self.conf["exec_file"],
-            cwd=str(Path(WINE_ENVS_BASE_PATH) / self.env_path / "drive_c" / "games" / self.title)
+            cwd=str(cwd)
         )

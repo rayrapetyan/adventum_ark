@@ -1,4 +1,19 @@
 {
+  "11th_hour": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_the_11th_hour_1.0_(22303).exe",
+      "app_files": [
+        "*"
+      ],
+      "saves_path": "{GAME_PATH}/SAVE"
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "launcher.exe",
+      "broken": "xmidi initialization error on launch"
+    }
+  },
   "3_skulls_of_the_toltecs": {
     "install": {
       "engine": "gog",
@@ -70,6 +85,22 @@
       "exec_file": "BADMOJO.EXE"
     }
   },
+  "bizarre_adventures_of_woodruff_and_the_schnibble": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}": [
+            "woodruff.itk", "intro.stk"
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "scummvm",
+      "scummvm_gameid": "gob"
+    }
+  },
   "black_mirror": {
     "install": {
       "engine": "gog",
@@ -81,7 +112,7 @@
     "run": {
       "engine": "wine",
       "exec_file": "BMirror.exe",
-      "post_cmd": "xrandr --output HDMI1 --brightness 1"
+      "post_cmd": "xrandr --output HDMI-1 --brightness 1"
     },
     "copy_saves": "{GAME_PATH}/save.*"
   },
@@ -92,10 +123,11 @@
       "app_files": [
         "app/*"
       ],
-      "saves_path": "{GAME_PATH}/Savegames"
+      "saves_path": "/home/{USER}/BlackMirror2/Savegames"
     },
     "run": {
       "engine": "wine",
+      "wine_env": "win7",
       "exec_file": "BlackMirror2.exe"
     }
   },
@@ -183,7 +215,7 @@
       "scummvm_gameid": "comi"
     }
   },
-  "day_of_the_tentacle": {
+  "day_of_the_tentacle_remastered": {
     "install": {
       "engine": "gog",
       "installer": "setup_day_of_the_tentacle_remastered_1.3.11_(a)_(10017).exe",
@@ -197,6 +229,19 @@
       "exec_file": "Dott.exe"
     },
     "broken": "fails on fmod's System::init (troubles with OSS wine driver), works fine in linux"
+  },
+  "dig": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_the_dig_2.0.0.3.exe",
+      "app_files": [
+        "app/*"
+      ]
+    },
+    "run": {
+      "engine": "scummvm",
+      "scummvm_gameid": "dig"
+    }
   },
   "discworld_2_missing_presumed": {
     "install": {
@@ -333,7 +378,7 @@
     },
     "copy_saves": "{GAME_PATH}/*.ggx"
   },
-  "jack_orlando": {
+  "jack_orlando_a_cinematic_adventure_dc": {
     "install": {
       "engine": "gog",
       "installer": "setup_jack_orlando_dc_1.0_(15829).exe",
@@ -375,6 +420,20 @@
       "scummvm_gameid": "lsl7"
     }
   },
+  "machinarium": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_machinarium_2844-a_(18752).exe",
+      "app_files": [
+        "app/*"
+      ],
+      "saves_path": "{WINE_ENV_PATH}/drive_c/users/{USER}/Application Data/Amanita-Design.Machinarium"
+    },
+    "run": {
+      "engine": "wine",
+      "exec_file": "Machinarium.exe"
+    }
+  },
   "neverhood": {
     "install": {
       "engine": "copy",
@@ -389,6 +448,22 @@
     "run": {
       "engine": "scummvm",
       "scummvm_gameid": "neverhood"
+    }
+  },
+  "pilot_brothers": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_pilot_brothers_2.0.0.3.exe",
+      "app_files": [
+        "app/*"
+      ],
+      "saves_path": "{GAME_PATH}/content/save"
+    },
+    "run": {
+      "engine": "wine",
+      "screen_resolution": "640x480",
+      "cwd": "{GAME_PATH}/bin",
+      "exec_file": "Pilot Brothers.exe"
     }
   },
   "pink_panther_passport_to_peril": {
@@ -427,6 +502,21 @@
     },
     "broken": "watch https://bugs.winehq.org/show_bug.cgi?id=44931"
   },
+  "samorost_2": {
+    "install": {
+      "engine": "gog",
+      "saves_path": "{GAME_PATH}/SAVES",
+      "installer": "setup_samorost2_2.0.0.2.exe",
+      "app_files": [
+        "app/*"
+      ]
+    },
+    "run": {
+      "engine": "wine",
+      "screen_resolution": "1024x768",
+      "exec_file": "Samorost2.exe"
+    }
+  },
   "sanitarium": {
     "install": {
       "engine": "gog",
@@ -464,6 +554,22 @@
     },
     "broken": "totally"
   },
+  "titanic_adventure_out_of_time": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_titanic_adventure_out_of_time_1.0_tour_fix_(17629).exe",
+      "app_files": [
+        "app/*"
+      ],
+      "saves_path": "{GAME_PATH}/SAVES"
+    },
+    "run": {
+      "engine": "wine",
+      "wine_env": "win7",
+      "exec_file": "TitanicStart.exe"
+    },
+    "broken": "just a black screen after start"
+  },
   "toonstruck": {
     "install": {
       "engine": "gog",
@@ -475,22 +581,6 @@
     "run": {
       "engine": "scummvm",
       "scummvm_gameid": "toon"
-    }
-  },
-  "woodruff": {
-    "install": {
-      "engine": "copy",
-      "images": {
-        "1.iso": {
-          "{GAME_PATH}": [
-            "woodruff.itk", "intro.stk"
-          ]
-        }
-      }
-    },
-    "run": {
-      "engine": "scummvm",
-      "scummvm_gameid": "gob"
     }
   }
 }

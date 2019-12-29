@@ -51,6 +51,7 @@ class BaseInstaller:
                 if os.listdir(str(actual_saves_path)) and not os.listdir(str(portable_saves_path)):
                     copy_ex(actual_saves_path / "*", portable_saves_path)
                 rm_dir(actual_saves_path)
+            actual_saves_path.parent.mkdir(parents=True, exist_ok=True)
             print(f"creating a symlink: {actual_saves_path}->{portable_saves_path}")
             actual_saves_path.symlink_to(portable_saves_path)
         return portable_saves_path
