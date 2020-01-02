@@ -2,10 +2,12 @@ from distutils.util import strtobool
 from pathlib import Path
 
 from conf.conf import *
+from runners.wine import Wine
 from _utils.misc import (
     cmd_exec,
     copy_ex,
     eval_path,
+    eval_str,
     find_replace_text,
     get_var_val_by_name,
     rm_dir,
@@ -87,5 +89,10 @@ class BaseInstaller:
                             find = repl["find"]
                             replace = repl["replace"]
                         find_replace_text(target_file, find, replace)
+            elif op == "regedit":
+                wine_runner = Wine(self.title)
+                for params in files:
+                    value = eval_str(params["value"], self.env)
+                    wine_runner.upd_reg(params["key"], params["subkey"], value)
             else:
                 raise Exception(f"unknown patch type: {op}")

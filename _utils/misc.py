@@ -63,6 +63,7 @@ def find_replace_text(file_path, find, replace):
 
 
 def set_screen_resolution(mode):
+    # TODO: move video output name to config
     _, stderr = cmd_exec(f'xrandr --output HDMI-1 --mode {mode}')
     if stderr:
         raise Exception(f"error setting screen resolution: {stderr}")

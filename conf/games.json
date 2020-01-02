@@ -131,6 +131,21 @@
       "exec_file": "BlackMirror2.exe"
     }
   },
+  "black_mirror_3": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_black_mirror3_2.0.0.5.exe",
+      "app_files": [
+        "game/*", "support/app/*"
+      ],
+      "saves_path": "/home/{USER}/BlackMirrorIII/Savegames"
+    },
+    "run": {
+      "engine": "wine",
+      "wine_env": "win7",
+      "exec_file": "BlackMirrorIII.exe"
+    }
+  },
   "broken_sword_the_shadow_of_the_templars_dc": {
     "install": {
       "engine": "gog",
@@ -356,6 +371,51 @@
       "exec_file": "faust.exe"
     }
   },
+  "full_throttle_remastered": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_full_throttle_remastered_1.1.891868_(14024).exe",
+      "app_files": [
+        "app/*"
+      ]
+    },
+    "run": {
+      "engine": "wine",
+      "wine_env": "win7",
+      "exec_file": "Throttle.exe"
+    },
+    "broken": "hangs on loading init scene"
+  },
+  "gemini_rue": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_gemini_rue_2.1.0.9.exe",
+      "app_files": [
+        "app/*"
+      ],
+      "saves_path": "{WINE_ENV_PATH}/drive_c/users/{USER}/Saved Games/Gemini Rue",
+      "patches": {
+        "find_replace_text": {
+          "{GAME_PATH}/acsetup.cfg": [
+            {
+              "find": "screenres=1",
+              "replace": "screenres=0"
+            },
+            {
+              "find": "gfxfilter=StdScale4",
+              "replace": "gfxfilter=None"
+            }
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "wine",
+      "wine_env": "win7",
+      "screen_resolution": "640x480",
+      "exec_file": "Gemini Rue.exe"
+    }
+  },
   "golden_gate": {
     "install": {
       "engine": "copy",
@@ -385,7 +445,16 @@
       "app_files": [
         "app/*"
       ],
-      "saves_path": "{GAME_PATH}/Savegame"
+      "saves_path": "{GAME_PATH}/Savegame",
+      "patches": {
+        "regedit": [
+          {
+            "key": "HKEY_LOCAL_MACHINE\\Software\\TopWare Poland\\Jack Orlando",
+            "subkey": "Directory",
+            "value": "{GAME_PATH}"
+          }
+        ]
+      }
     },
     "run": {
       "engine": "wine",
@@ -448,6 +517,21 @@
     "run": {
       "engine": "scummvm",
       "scummvm_gameid": "neverhood"
+    }
+  },
+  "new_beginning": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_a_new_beginning_final_cut_2.0.4.0395_(27805).exe",
+      "app_files": [
+        "*"
+      ],
+      "saves_path": "{WINE_ENV_PATH}/drive_c/users/{USER}//Local Settings/Application Data/Daedalic Entertainment/A New Beginning - Final Cut/Savegames"
+    },
+    "run": {
+      "engine": "wine",
+      "wine_env": "win7",
+      "exec_file": "anb.exe"
     }
   },
   "pilot_brothers": {
@@ -582,5 +666,36 @@
       "engine": "scummvm",
       "scummvm_gameid": "toon"
     }
+  },
+  "touche_the_adventures_of_the_fifth_musketeer": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}": [
+            "*"
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "scummvm",
+      "scummvm_gameid": "touche"
+    }
+  },
+  "truberbrook": {
+    "install": {
+      "engine": "gog",
+      "installer": "setup_truberbrook_1.6_(30927).exe",
+      "app_files": [
+        "*"
+      ]
+    },
+    "run": {
+      "engine": "wine",
+      "wine_env": "win7",
+      "exec_file": "Truberbrook.exe"
+    },
+    "broken": "no sound"
   }
 }

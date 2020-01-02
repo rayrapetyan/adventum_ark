@@ -6,6 +6,7 @@ from _utils.md import MemDisk
 from _utils.misc import (
     cmd_exec,
     eval_path,
+    gen_win_reg_file,
     restore_screen_resolution,
     set_screen_resolution,
 )
@@ -17,6 +18,11 @@ class Wine(BaseRunner):
     def __init__(self, title):
         super().__init__(title)
         self.env_path = Path(WINE_ENVS_BASE_PATH) / self.conf.get("wine_env", "win95")
+
+        self.games_path = self.env_path / "drive_c" / "games"
+        if not self.games_path.exists():
+            self.games_path.symlink_to(GAMES_BASE_PATH)
+
         self.memdisks = []
         self.drives = []
 
@@ -30,33 +36,16 @@ class Wine(BaseRunner):
                 print(f"post_cmd errors: {stderr}")
         super(Wine, self).__del__()
 
-
     def run_wine_cmd(self, cmd, cwd=None):
         env = os.environ.copy()
         env["WINEPREFIX"] = str(self.env_path)
-        _, stderr = cmd_exec(f'wine "{cmd}"', env=env, cwd=cwd)
+        _, stderr = cmd_exec(f'wine {cmd}', env=env, cwd=cwd)
         if stderr:
             print(f"wine errors: {stderr}")
 
-
-    def upd_reg(self):
-        return
-        """
-        if "compat" in self.conf:
-            reg_file = gen_win_reg_file(
-                f"HKEY_CURRENT_USER\\Software\\Wine\\AppDefaults\\{self.conf['exec_file']}",
-                "Version",
-                self.conf["compat"]
-            )
-            self.run_wine_cmd(f"regedit {reg_file}")
-        """
-
-    def add_games_path(self):
-        # we never delete this even from wine "clean" env
-        path_src = self.env_path / "drive_c" / "games"
-        if path_src.exists():
-            return
-        Path(path_src).symlink_to(GAMES_BASE_PATH)
+    def upd_reg(self, key, subkey, value):
+        reg_file = gen_win_reg_file(key, subkey, value)
+        self.run_wine_cmd(f"regedit {reg_file}")
 
     def remove_drive(self, path):
         _, stderr = cmd_exec(f"rm {path}")
@@ -91,25 +80,20 @@ class Wine(BaseRunner):
         # the rest will happen in MemDisk dtor's
 
     def run(self):
-        self.add_games_path()
         self.mount()
-        self.upd_reg()
 
         if "screen_resolution" in self.conf:
             set_screen_resolution(self.conf["screen_resolution"])
 
-        # TODO: change param name to "resolution"
         pre_cmd = self.conf.get("pre_cmd", None)
         if pre_cmd:
             _, stderr = cmd_exec(pre_cmd)
             if stderr:
                 print(f"pre_cmd errors: {stderr}")
 
-        cwd = self.conf.get("cwd", Path(WINE_ENVS_BASE_PATH) / self.env_path / "drive_c" / "games" / self.title)
-
-        cwd = eval_path(Path(cwd), self.env)
+        cwd = eval_path(Path(self.conf.get("cwd", self.game_path)), self.env)
 
         self.run_wine_cmd(
-            cmd=self.conf["exec_file"],
+            cmd=f'"{self.conf["exec_file"]}"',
             cwd=str(cwd)
         )
