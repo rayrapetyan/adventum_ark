@@ -74,12 +74,17 @@ def restore_screen_resolution():
     return set_screen_resolution("1920x1080 --panning 0x0+0+0 --scale 1x1")
 
 
-def gen_win_reg_file(key, subkey, value):
+def gen_win_reg_file(registry, env):
     file = '/tmp/patch.reg'
     with open(file, 'w+t') as f:
         f.write("Windows Registry Editor Version 5.00\n\n")
-        f.write(f"[{key}]\n")
-        f.write(f'"{subkey}"="{value}"\n')
+        for k, v in registry.items():
+            f.write(f"[{k}]\n")
+            for sv in v:
+                (subkey, val), = sv.items()
+                val = eval_str(val, env)
+                f.write(f'"{subkey}"="{val}"\n')
+            f.write("\n")
     return file
 
 

@@ -36,6 +36,16 @@ class Wine(BaseRunner):
                 print(f"post_cmd errors: {stderr}")
         super(Wine, self).__del__()
 
+    def emul_virtual_desktop(self, resolution=None):
+        if resolution:
+            op = ""
+        else:
+            op = "-"
+        self.upd_reg({
+            f"{op}HKEY_CURRENT_USER\\Software\\Wine\\Explorer": [{"Desktop": "Default"}],
+            f"{op}HKEY_CURRENT_USER\\Software\\Wine\\Explorer\\Desktops": [{"Default": f"{resolution}"}]
+        })
+
     def run_wine_cmd(self, cmd, cwd=None):
         env = os.environ.copy()
         env["WINEPREFIX"] = str(self.env_path)
@@ -43,8 +53,8 @@ class Wine(BaseRunner):
         if stderr:
             print(f"wine errors: {stderr}")
 
-    def upd_reg(self, key, subkey, value):
-        reg_file = gen_win_reg_file(key, subkey, value)
+    def upd_reg(self, registry):
+        reg_file = gen_win_reg_file(registry, self.env)
         self.run_wine_cmd(f"regedit {reg_file}")
 
     def remove_drive(self, path):
@@ -82,8 +92,16 @@ class Wine(BaseRunner):
     def run(self):
         self.mount()
 
-        if "screen_resolution" in self.conf:
-            set_screen_resolution(self.conf["screen_resolution"])
+        screen_resolution = self.conf.get("screen_resolution", None)
+
+        if self.conf.get("emul_virtual_desktop", False):
+            assert screen_resolution is not None
+            self.emul_virtual_desktop(screen_resolution)
+        else:
+            self.emul_virtual_desktop()
+
+        if screen_resolution:
+            set_screen_resolution(screen_resolution)
 
         pre_cmd = self.conf.get("pre_cmd", None)
         if pre_cmd:

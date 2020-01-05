@@ -10,12 +10,14 @@ mkdir /ara/adventum_ark/envs/wine
 rm -rf /ara/adventum_ark/envs/wine/win95
 env WINEARCH=win32 WINEPREFIX=/ara/adventum_ark/envs/wine/win95 winecfg
 (proceed selecting "Windows 95")
+ln -s /ara/adventum_ark/games /ara/adventum_ark/envs/wine/win95/drive_c/games
 env WINEPREFIX=/ara/adventum_ark/envs/wine/win95 wine /ara/adventum_ark/devel/aa/deps/wine/oalinst.exe
 env WINEPREFIX=/ara/adventum_ark/envs/wine/win95 wine /ara/adventum_ark/devel/aa/deps/wine/QuickTime_6.5.1.exe
 
 rm -rf /ara/adventum_ark/envs/wine/win7
 env WINEARCH=win32 WINEPREFIX=/ara/adventum_ark/envs/wine/win7 winecfg
 (proceed selecting "Windows 7")
+ln -s /ara/adventum_ark/games /ara/adventum_ark/envs/wine/win7/drive_c/games
 env WINEPREFIX=/ara/adventum_ark/envs/wine/win7 wine /ara/adventum_ark/devel/aa/deps/wine/oalinst.exe
 env WINEPREFIX=/ara/adventum_ark/envs/wine/win7 wine /ara/adventum_ark/devel/aa/deps/wine/QuickTime_6.5.1.exe
 
@@ -23,6 +25,7 @@ env WINEPREFIX=/ara/adventum_ark/envs/wine/win7 wine /ara/adventum_ark/devel/aa/
 rm -rf /ara/adventum_ark/envs/wine/win95_qt2
 env WINEARCH=win32 WINEPREFIX=/ara/adventum_ark/envs/wine/win95_qt2 winecfg
 (proceed selecting "Windows 95")
+ln -s /ara/adventum_ark/games /ara/adventum_ark/envs/wine/win95_qt2/drive_c/games
 env WINEPREFIX=/ara/adventum_ark/envs/wine/win95_qt2 wine /ara/adventum_ark/devel/aa/deps/wine/oalinst.exe
 env WINEPREFIX=/ara/adventum_ark/envs/wine/win95_qt2 wine /ara/adventum_ark/devel/aa/deps/wine/QuickTime_2.1.2.exe
 
@@ -46,3 +49,8 @@ bspatch oldfile newfile patchfile
 
 Wine:
 Sometimes setting screen resolution before running the game prevents some issues.
+
+
+Ubuntu:
+MIDI sequencer (run before MIDI game):
+timidity -iA -B2,8 -Os -EFreverb=0

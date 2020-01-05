@@ -1,5 +1,5 @@
 from runners.wine import Wine
 
 def test_run():
-    wine = Wine("pilot_brothers")
+    wine = Wine("ace_ventura")
     wine.run()

@@ -10,9 +10,12 @@
     },
     "run": {
       "engine": "wine",
-      "exec_file": "launcher.exe",
-      "broken": "xmidi initialization error on launch"
-    }
+      "wine_env": "win7",
+      "emul_virtual_desktop": true,
+      "screen_resolution": "800x600",
+      "exec_file": "v32win.exe"
+    },
+    "broken": "xmidi initialization error on launch: https://forums.freebsd.org/threads/software-synth-midi-how-to-get-it-working.13998/"
   },
   "3_skulls_of_the_toltecs": {
     "install": {
@@ -52,6 +55,25 @@
       "exec_file": "nine_95.exe"
     },
     "broken": "requires 8bpp emulation"
+  },
+  "ace_ventura": {
+    "install": {
+      "engine": "copy",
+      "images": {
+        "1.iso": {
+          "{GAME_PATH}": [
+            "./Ace/*"
+          ]
+        }
+      }
+    },
+    "run": {
+      "engine": "wine",
+      "emul_virtual_desktop": true,
+      "screen_resolution": "800x600",
+      "exec_file": "Ace.exe"
+    },
+    "copy_saves": "{GAME_PATH}/acegame.sav"
   },
   "bad_mojo_redux": {
     "install": {
@@ -447,13 +469,14 @@
       ],
       "saves_path": "{GAME_PATH}/Savegame",
       "patches": {
-        "regedit": [
+        "regedit":
           {
-            "key": "HKEY_LOCAL_MACHINE\\Software\\TopWare Poland\\Jack Orlando",
-            "subkey": "Directory",
-            "value": "{GAME_PATH}"
+            "HKEY_LOCAL_MACHINE\\Software\\TopWare Poland\\Jack Orlando": [
+              {
+                "Directory": "{GAME_PATH}"
+              }
+            ]
           }
-        ]
       }
     },
     "run": {
@@ -650,9 +673,11 @@
     "run": {
       "engine": "wine",
       "wine_env": "win7",
+      "screen_resolution": "640x480",
+      "emul_virtual_desktop": true,
       "exec_file": "TitanicStart.exe"
     },
-    "broken": "just a black screen after start"
+    "broken": "requires 8bpp"
   },
   "toonstruck": {
     "install": {
