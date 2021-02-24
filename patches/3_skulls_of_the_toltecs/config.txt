@@ -9,7 +9,7 @@ VideoSettings
 	Display { \\.\DISPLAY1 }
 	Resolution { 1920 1080 }
 	AspectGame { 1 }
-	AspectScreen { 16 10 }
+	AspectScreen { 4 3 }
 	Fullscreen { true }
 	VSync { false }
 	AllModes { true }

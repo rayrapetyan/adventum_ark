@@ -8,14 +8,14 @@ rm -rf /ara/adventum_ark/envs/wine
 mkdir /ara/adventum_ark/envs/wine
 
 rm -rf /ara/adventum_ark/envs/wine/win95
-env WINEARCH=win32 WINEPREFIX=/ara/adventum_ark/envs/wine/win95 winecfg
+env WINEARCH=win32 WINEPREFIX=/ara/adventum_ark/envs/wine/win95 WINEDLLOVERRIDES="mshtml=disabled,mscoree=disabled" winecfg
 (proceed selecting "Windows 95")
 ln -s /ara/adventum_ark/games /ara/adventum_ark/envs/wine/win95/drive_c/games
 env WINEPREFIX=/ara/adventum_ark/envs/wine/win95 wine /ara/adventum_ark/devel/aa/deps/wine/oalinst.exe
 env WINEPREFIX=/ara/adventum_ark/envs/wine/win95 wine /ara/adventum_ark/devel/aa/deps/wine/QuickTime_6.5.1.exe
 
 rm -rf /ara/adventum_ark/envs/wine/win7
-env WINEARCH=win32 WINEPREFIX=/ara/adventum_ark/envs/wine/win7 winecfg
+env WINEARCH=win32 WINEPREFIX=/ara/adventum_ark/envs/wine/win7 WINEDLLOVERRIDES="mshtml=disabled,mscoree=disabled" winecfg
 (proceed selecting "Windows 7")
 ln -s /ara/adventum_ark/games /ara/adventum_ark/envs/wine/win7/drive_c/games
 env WINEPREFIX=/ara/adventum_ark/envs/wine/win7 wine /ara/adventum_ark/devel/aa/deps/wine/oalinst.exe
@@ -23,7 +23,7 @@ env WINEPREFIX=/ara/adventum_ark/envs/wine/win7 wine /ara/adventum_ark/devel/aa/
 
 (older QT for e.g. Golden Gate)
 rm -rf /ara/adventum_ark/envs/wine/win95_qt2
-env WINEARCH=win32 WINEPREFIX=/ara/adventum_ark/envs/wine/win95_qt2 winecfg
+env WINEARCH=win32 WINEPREFIX=/ara/adventum_ark/envs/wine/win95_qt2 WINEDLLOVERRIDES="mshtml=disabled,mscoree=disabled" winecfg
 (proceed selecting "Windows 95")
 ln -s /ara/adventum_ark/games /ara/adventum_ark/envs/wine/win95_qt2/drive_c/games
 env WINEPREFIX=/ara/adventum_ark/envs/wine/win95_qt2 wine /ara/adventum_ark/devel/aa/deps/wine/oalinst.exe

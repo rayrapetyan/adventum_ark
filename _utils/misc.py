@@ -71,7 +71,7 @@ def set_screen_resolution(mode):
 
 def restore_screen_resolution():
     # TODO: make generic for any system
-    return set_screen_resolution("1920x1080 --panning 0x0+0+0 --scale 1x1")
+    return set_screen_resolution("1920x1200 --panning 0x0+0+0 --scale 1x1")
 
 
 def gen_win_reg_file(registry, env):
